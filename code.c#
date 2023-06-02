@@ -1,0 +1,52 @@
+using System;
+
+namespace NumberGuessingGame
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random random = new Random();
+            int secretNumber = random.Next(1, 101);
+            int attempts = 0;
+            bool isCorrect = false;
+
+            Console.WriteLine("Welcome to the Number Guessing Game!");
+            Console.WriteLine("I'm thinking of a number between 1 and 100.");
+
+            while (!isCorrect && attempts < 7)
+            {
+                Console.Write("Take a guess: ");
+                int guess = Convert.ToInt32(Console.ReadLine());
+                attempts++;
+
+                if (guess == secretNumber)
+                {
+                    isCorrect = true;
+                }
+                else if (guess < secretNumber)
+                {
+                    Console.WriteLine("Too low!");
+                }
+                else
+                {
+                    Console.WriteLine("Too high!");
+                }
+            }
+
+            if (isCorrect)
+            {
+                Console.WriteLine("Congratulations! You guessed the number correctly.");
+                Console.WriteLine($"Number of attempts: {attempts}");
+            }
+            else
+            {
+                Console.WriteLine("Sorry, you didn't guess the number correctly.");
+                Console.WriteLine($"The secret number was: {secretNumber}");
+            }
+
+            Console.WriteLine("Thank you for playing!");
+            Console.ReadLine();
+        }
+    }
+}
